@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "e39d3b70-d47e-4d58-9497-a1b69f7d218d",
+		"name": "Insidology",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  products(first:5) {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product detail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  product(id: \"Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc1NDI3MTEzMjA4MjM=\") {\n    title\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product variants",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  node(id: \"Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc1NDI3MTEzMjA4MjM=\") {\n    id\n    ... on Product {\n      variants(first: 5) {\n        edges {\n          node {\n            id\n          }\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creat a cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  cartCreate(\n    input: {\n      lines: [\n        {\n          quantity: 1\n          merchandiseId: \"Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC80MjQ0MDI5OTYxMDM1OQ==\"\n        }\n      ]\n    }\n  ) {\n    cart {\n      id\n      createdAt\n      updatedAt\n      lines(first: 10) {\n        edges {\n          node {\n            id\n            merchandise {\n              ... on ProductVariant {\n                id\n              }\n            }\n          }\n        }\n      }\n      attributes {\n        key\n        value\n      }\n      estimatedCost {\n        totalAmount {\n          amount\n          currencyCode\n        }\n        subtotalAmount {\n          amount\n          currencyCode\n        }\n        totalTaxAmount {\n          amount\n          currencyCode\n        }\n        totalDutyAmount {\n          amount\n          currencyCode\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a Cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  cart(\n    id: \"Z2lkOi8vc2hvcGlmeS9DYXJ0L2ZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n  ) {\n    id\n    createdAt\n    updatedAt\n    lines(first: 10) {\n      edges {\n        node {\n          id\n          quantity\n          merchandise {\n            ... on ProductVariant {\n              id\n            }\n          }\n          attributes {\n            key\n            value\n          }\n        }\n      }\n    }\n    attributes {\n      key\n      value\n    }\n    estimatedCost {\n      totalAmount {\n        amount\n        currencyCode\n      }\n      subtotalAmount {\n        amount\n        currencyCode\n      }\n      totalTaxAmount {\n        amount\n        currencyCode\n      }\n      totalDutyAmount {\n        amount\n        currencyCode\n      }\n    }\n    buyerIdentity {\n      email\n      phone\n      customer {\n        id\n      }\n      countryCode\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Increase Cart Product Quantity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  cartLinesUpdate(\n    cartId: \"Z2lkOi8vc2hvcGlmeS9DYXJ0L2ZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n    lines: {\n      id: \"Z2lkOi8vc2hvcGlmeS9DYXJ0TGluZS8xZjY5OWU5ODY3M2UzMTAxNzZiMGVkYjgxZWEzN2ZmYT9jYXJ0PWZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n      quantity: 3\n    }\n  ) {\n    cart {\n      id\n      lines(first: 10) {\n        edges {\n          node {\n            id\n            quantity\n            merchandise {\n              ... on ProductVariant {\n                id\n              }\n            }\n          }\n        }\n      }\n      estimatedCost {\n        totalAmount {\n          amount\n          currencyCode\n        }\n        subtotalAmount {\n          amount\n          currencyCode\n        }\n        totalTaxAmount {\n          amount\n          currencyCode\n        }\n        totalDutyAmount {\n          amount\n          currencyCode\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product to Cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  cartLinesAdd(\n    cartId: \"Z2lkOi8vc2hvcGlmeS9DYXJ0L2ZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n    lines: [\n        {\n          quantity: 1\n          merchandiseId: \"Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC80MjQ0MDMwNDk1MTU0Mw==\"\n        }\n    ]\n  ) {\n    cart {\n      id\n      lines(first: 10) {\n        edges {\n          node {\n            id\n            quantity\n            merchandise {\n              ... on ProductVariant {\n                id\n              }\n            }\n          }\n        }\n      }\n      estimatedCost {\n        totalAmount {\n          amount\n          currencyCode\n        }\n        subtotalAmount {\n          amount\n          currencyCode\n        }\n        totalTaxAmount {\n          amount\n          currencyCode\n        }\n        totalDutyAmount {\n          amount\n          currencyCode\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove product from Cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  cartLinesRemove(\n    cartId: \"Z2lkOi8vc2hvcGlmeS9DYXJ0L2ZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n    lineIds: \"Z2lkOi8vc2hvcGlmeS9DYXJ0TGluZS9hYTI0OTUzMzkwZGQyMGYyMTE3ZjczMDI0MDhhODM5Mj9jYXJ0PWZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n  ) {\n    cart {\n      id\n      lines(first: 10) {\n        edges {\n          node {\n            id\n            quantity\n            merchandise {\n              ... on ProductVariant {\n                id\n              }\n            }\n          }\n        }\n      }\n      estimatedCost {\n        totalAmount {\n          amount\n          currencyCode\n        }\n        subtotalAmount {\n          amount\n          currencyCode\n        }\n        totalTaxAmount {\n          amount\n          currencyCode\n        }\n        totalDutyAmount {\n          amount\n          currencyCode\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get checkout url",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Shopify-Storefront-Access-Token",
+						"value": "3f1d3c901e8770459331f08ea9caac3c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  cartLinesRemove(\n    cartId: \"Z2lkOi8vc2hvcGlmeS9DYXJ0L2ZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n    lineIds: \"Z2lkOi8vc2hvcGlmeS9DYXJ0TGluZS9hYTI0OTUzMzkwZGQyMGYyMTE3ZjczMDI0MDhhODM5Mj9jYXJ0PWZlMmQzOGFhMDQ4MGI2NzNlODJhOTg2NWFmY2IwOWMz\"\n  ) {\n    cart {\n      id\n      lines(first: 10) {\n        edges {\n          node {\n            id\n            quantity\n            merchandise {\n              ... on ProductVariant {\n                id\n              }\n            }\n          }\n        }\n      }\n      estimatedCost {\n        totalAmount {\n          amount\n          currencyCode\n        }\n        subtotalAmount {\n          amount\n          currencyCode\n        }\n        totalTaxAmount {\n          amount\n          currencyCode\n        }\n        totalDutyAmount {\n          amount\n          currencyCode\n        }\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://insidology.myshopify.com/api/2022-01/graphql.json",
+					"protocol": "https",
+					"host": [
+						"insidology",
+						"myshopify",
+						"com"
+					],
+					"path": [
+						"api",
+						"2022-01",
+						"graphql.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

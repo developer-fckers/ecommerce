@@ -4,10 +4,9 @@ import Hero from "../components/Hero"
 import Head from 'next/head'
 
 
-export default function Home({ products }) {
-
+export default function Home({ products = [] }) {
   return (
-    <div className="">
+    <>
       <Head>
         <title>Modern eCommerce Course</title>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,7 +23,7 @@ export default function Home({ products }) {
       </Head>
       <Hero />
       <ProductList products={products} />
-    </div>
+    </>
   )
 }
 

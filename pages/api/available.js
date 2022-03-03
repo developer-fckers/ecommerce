@@ -5,9 +5,9 @@ export default async function send(req, res) {
 
   const domain = process.env.SHOPIFY_STORE_DOMAIN
   const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN
-
+  console.log({ domain, storefrontAccessToken })
   async function ShopifyData(query) {
-    const URL = `https://${domain}/api/2021-07/graphql.json`
+    const URL = `https://${domain}/api/2022-01/graphql.json`
 
     const options = {
       endpoint: URL,
@@ -27,6 +27,7 @@ export default async function send(req, res) {
 
       return data
     } catch (error) {
+      console.log({object})
       throw new Error("Products not fetched")
     }
   }
